@@ -5,6 +5,7 @@ Class {
 		'model',
 		'host',
 		'port',
+		'stream',
 		'temperature',
 		'num_predict',
 		'top_k',
@@ -67,7 +68,8 @@ OllamaAPI >> initialize [
 	super initialize.
 	host := '127.0.0.1'.
 	port := 11434.
-	model := OCodeLlamaModel new
+	model := OCodeLlamaModel new.
+	stream := false
 ]
 
 { #category : #api }
@@ -148,11 +150,23 @@ OllamaAPI >> query: aTextQuery [
 	paramDic := Dictionary new.
 	paramDic at: #model put: self model fullName.
 	paramDic at: #prompt put: (self buildQuery: aTextQuery).
-	paramDic at: #stream put: false.
+	paramDic at: #stream put: self stream.
 	
 	self addParameterTo: paramDic.
 	znClient entity: (ZnEntity json: (NeoJSONWriter toString: paramDic)).
 	^ znClient post at: #response
+]
+
+{ #category : #accessing }
+OllamaAPI >> stream [
+
+	^ stream
+]
+
+{ #category : #accessing }
+OllamaAPI >> stream: anObject [
+
+	stream := anObject
 ]
 
 { #category : #accessing }
