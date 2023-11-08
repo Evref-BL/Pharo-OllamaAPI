@@ -54,6 +54,19 @@ OllamaAPI >> initialize [
 	model := OCodeLlamaModel new
 ]
 
+{ #category : #api }
+OllamaAPI >> list [
+	"Pull the model linked to this API"
+
+	| znClient |
+	znClient := ZnEasy client.
+	znClient forJsonREST.
+	znClient host: self host.
+	znClient port: self port.
+	znClient path: 'api/tags'.
+	^ znClient get
+]
+
 { #category : #accessing }
 OllamaAPI >> model [
 
@@ -91,6 +104,23 @@ OllamaAPI >> port: anObject [
 ]
 
 { #category : #api }
+OllamaAPI >> pull [
+	"Pull the model linked to this API"
+
+	| znClient paramDic |
+	znClient := ZnEasy client.
+	znClient forJsonREST.
+	znClient host: self host.
+	znClient port: self port.
+	znClient path: 'api/pull'.
+	paramDic := Dictionary new.
+	paramDic at: #name put: self model fullName.
+	paramDic at: #stream put: false.
+	znClient entity: (ZnEntity json: (NeoJSONWriter toString: paramDic)).
+	^ znClient post at: #response
+]
+
+{ #category : #api }
 OllamaAPI >> query: aTextQuery [
 
 	| znClient paramDic |
@@ -100,9 +130,10 @@ OllamaAPI >> query: aTextQuery [
 	znClient port: self port.
 	znClient path: 'api/generate'.
 	paramDic := Dictionary new.
-	paramDic at: #model put: self model name.
+	paramDic at: #model put: self model fullName.
 	paramDic at: #prompt put: (self buildQuery: aTextQuery).
 	paramDic at: #stream put: false.
+	
 	self addParameterTo: paramDic.
 	znClient entity: (ZnEntity json: (NeoJSONWriter toString: paramDic)).
 	^ znClient post at: #response
