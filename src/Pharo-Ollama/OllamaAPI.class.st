@@ -16,12 +16,15 @@ Class {
 { #category : #private }
 OllamaAPI >> addParameterTo: paramDic [
 
+	| options |
+	options := Dictionary new.
+	paramDic at: #options put: options.
 	self temperature ifNotNil: [ :var |
-		paramDic at: #temperature put: var asFloat ].
+		options at: #temperature put: var asFloat ].
 	self num_predict ifNotNil: [ :var |
-		paramDic at: #num_predict put: var ].
-	self top_k ifNotNil: [ :var | paramDic at: #top_k put: var ].
-	self top_p ifNotNil: [ :var | paramDic at: #top_p put: var ]
+		options at: #num_predict put: var ].
+	self top_k ifNotNil: [ :var | options at: #top_k put: var ].
+	self top_p ifNotNil: [ :var | options at: #top_p put: var ]
 ]
 
 { #category : #private }
