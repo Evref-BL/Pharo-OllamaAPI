@@ -1,8 +1,8 @@
 # Pharo-OllamaAPI
 
-This is a simple API to call the [Ollama API](https://ollama.ai/)
+This is a simple API to call the [Ollama API](https://github.com/jmorganca/ollama/blob/main/docs/api.md)
 
-> You must first install Ollama on your computer
+> You must first install [Ollama](https://ollama.ai/) on your computer
 
 ## Example
 
