@@ -51,7 +51,7 @@ OllamaAPI >> initialize [
 	super initialize.
 	host := '127.0.0.1'.
 	port := 11434.
-	model := 'codellama'
+	model := OCodeLlamaModel new
 ]
 
 { #category : #accessing }
@@ -100,7 +100,7 @@ OllamaAPI >> query: aTextQuery [
 	znClient port: self port.
 	znClient path: 'api/generate'.
 	paramDic := Dictionary new.
-	paramDic at: #model put: self model.
+	paramDic at: #model put: self model name.
 	paramDic at: #prompt put: (self buildQuery: aTextQuery).
 	paramDic at: #stream put: false.
 	self addParameterTo: paramDic.
