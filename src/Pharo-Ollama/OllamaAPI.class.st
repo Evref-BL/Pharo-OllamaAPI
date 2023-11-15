@@ -141,8 +141,12 @@ OllamaAPI >> pull [
 { #category : #api }
 OllamaAPI >> query: aTextQuery [
 
-	| znClient paramDic |
+	| znClient paramDic writer |
 	znClient := ZnClient new.
+	writer := ZnUtils defaultJSONWriter.
+	znClient
+		accept: ZnMimeType applicationJson;
+		contentWriter: [ :data | ZnEntity json: (writer toString: data) ].
 	znClient host: self host.
 	znClient port: self port.
 	znClient path: 'api/generate'.
@@ -152,19 +156,18 @@ OllamaAPI >> query: aTextQuery [
 	paramDic at: #stream put: self stream.
 
 	self addParameterTo: paramDic.
-	znClient entity: (ZnEntity json: (NeoJSONWriter toString: paramDic)).
+	znClient contents: paramDic.
 
 	self stream
 		ifTrue: [
-			| writer |
-			writer := ZnUtils defaultJSONWriter.
-			znClient
-				accept: ZnMimeType applicationJson;
-				contentWriter: [ :data | ZnEntity json: (writer toString: data) ].
 			znClient streaming: true.
 			^ znClient post ]
 		ifFalse: [
+			| reader |
 			znClient forJsonREST.
+			reader := ZnUtils defaultJSONReader.
+			znClient contentReader: [ :entity |
+				reader fromString: entity contents ].
 			^ znClient post at: #response ]
 ]
 
