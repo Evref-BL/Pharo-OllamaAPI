@@ -9,7 +9,8 @@ Class {
 		'temperature',
 		'num_predict',
 		'top_k',
-		'top_p'
+		'top_p',
+		'format'
 	],
 	#category : #'Pharo-Ollama'
 }
@@ -30,8 +31,8 @@ OllamaAPI >> addParameterTo: paramDic [
 
 { #category : #private }
 OllamaAPI >> buildQuery: aTextQuery [
-	^ 'Complete the following piece of code 
-', aTextQuery 
+
+	^ aTextQuery
 ]
 
 { #category : #api }
@@ -48,6 +49,24 @@ OllamaAPI >> delete [
 	paramDic at: #name put: self model fullName.
 	znClient entity: (ZnEntity json: (NeoJSONWriter toString: paramDic)).
 	^ znClient delete
+]
+
+{ #category : #accessing }
+OllamaAPI >> format [
+
+	^ format
+]
+
+{ #category : #accessing }
+OllamaAPI >> format: anObject [
+
+	format := anObject
+]
+
+{ #category : #accessing }
+OllamaAPI >> formatJson [
+
+	format := 'json'
 ]
 
 { #category : #accessing }
@@ -154,6 +173,8 @@ OllamaAPI >> query: aTextQuery [
 	paramDic at: #model put: self model fullName.
 	paramDic at: #prompt put: (self buildQuery: aTextQuery).
 	paramDic at: #stream put: self stream.
+	self format ifNotNil: [ :f | paramDic at: #format put: f ].
+
 
 	self addParameterTo: paramDic.
 	znClient contents: paramDic.
@@ -163,7 +184,7 @@ OllamaAPI >> query: aTextQuery [
 			znClient streaming: true.
 			^ znClient post ]
 		ifFalse: [
-			| reader |
+			| reader | 
 			znClient forJsonREST.
 			reader := ZnUtils defaultJSONReader.
 			znClient contentReader: [ :entity |
