@@ -12,8 +12,42 @@ Class {
 		'top_p',
 		'format'
 	],
+	#classInstVars : [
+		'defaultModel'
+	],
 	#category : #'Pharo-Ollama'
 }
+
+{ #category : #accessing }
+OllamaAPI class >> defaultModel [
+
+	^ defaultModel
+]
+
+{ #category : #accessing }
+OllamaAPI class >> defaultModel: anObject [
+
+	defaultModel := anObject
+]
+
+{ #category : #settings }
+OllamaAPI class >> ollamaSettings: aBuilder [
+
+	<systemsettings>
+	(aBuilder group: #Ollama)
+		parent: #tools;
+		with: [
+			(aBuilder pickOne: #defaultModel)
+				order: -100000;
+				label: 'HuggingFace Default model';
+				target: self;
+				default: OCodeLlamaModel class >> #b7;
+				domainValues:
+					(((Pragma allNamed: #ollamaInit:) collect: [ :pragma |
+							  pragma arguments first -> pragma method ]) sorted: [ :a :b |
+							 a key < b key ]);
+				ghostHelp: 'Model name' ]
+]
 
 { #category : #private }
 OllamaAPI >> addParameterTo: paramDic [
@@ -87,7 +121,9 @@ OllamaAPI >> initialize [
 	super initialize.
 	host := '127.0.0.1'.
 	port := 11434.
-	model := OCodeLlamaModel new.
+	model := self class defaultModel
+		         valueWithReceiver: self class defaultModel methodClass instanceSide
+		         arguments: {  }.
 	stream := false
 ]
 
