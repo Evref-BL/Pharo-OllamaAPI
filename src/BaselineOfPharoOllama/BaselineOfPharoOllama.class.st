@@ -51,7 +51,11 @@ BaselineOfPharoOllama >> defineGroups: spec [
 { #category : #baselines }
 BaselineOfPharoOllama >> definePackages: spec [
 
-	spec
-		package: 'Pharo-Ollama'
-		with: [ spec requires: #( 'NeoJSON' ) ]
+	spec package: 'Pharo-Ollama' with: [ spec requires: #( 'NeoJSON' ) ].
+
+	spec for: #'pharo10.x' do: [ 
+		spec
+			package: 'Pharo-Ollama'
+			with: [ spec requires: #( 'NeoJSON' 'Pharo-Ollama-Pharo10' ) ];
+			package: 'Pharo-Ollama-Pharo10' ]
 ]
