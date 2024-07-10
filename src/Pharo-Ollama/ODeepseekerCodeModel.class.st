@@ -1,11 +1,10 @@
 Class {
-	#name : 'ODeepseekerCodeModel',
-	#superclass : 'OModel',
-	#category : 'Pharo-Ollama',
-	#package : 'Pharo-Ollama'
+	#name : #ODeepseekerCodeModel,
+	#superclass : #OModel,
+	#category : 'Pharo-Ollama'
 }
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 ODeepseekerCodeModel class >> b33 [
 
 	<ollamaInit: 'deepseek-coder:33b'>
@@ -14,7 +13,7 @@ ODeepseekerCodeModel class >> b33 [
 		  yourself
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : #'as yet unclassified' }
 ODeepseekerCodeModel class >> b6 [
 
 	<ollamaInit: 'deepseek-coder:6.7b'>
@@ -23,7 +22,7 @@ ODeepseekerCodeModel class >> b6 [
 		  yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 ODeepseekerCodeModel >> name [
 
 	^ 'deepseek-coder'
