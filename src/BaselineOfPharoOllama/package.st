@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfPharoOllama }
+Package { #name : 'BaselineOfPharoOllama' }

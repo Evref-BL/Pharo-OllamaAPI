@@ -122,7 +122,10 @@ OllamaAPI >> initialize [
 	super initialize.
 	host := '127.0.0.1'.
 	port := 11434.
-	model := self class defaultModel.
+	model := self class defaultModel
+		         valueWithReceiver:
+		         self class defaultModel methodClass instanceSide
+		         arguments: {  }.
 	stream := false
 ]
 

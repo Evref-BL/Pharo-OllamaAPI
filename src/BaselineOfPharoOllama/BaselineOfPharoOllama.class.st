@@ -21,12 +21,13 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : #BaselineOfPharoOllama,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfPharoOllama
+	#name : 'BaselineOfPharoOllama',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfPharoOllama',
+	#package : 'BaselineOfPharoOllama'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfPharoOllama >> baseline: spec [
 
 	<baseline>
@@ -36,7 +37,7 @@ BaselineOfPharoOllama >> baseline: spec [
 		self defineGroups: spec ]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfPharoOllama >> defineDependencies: spec [
 
 	spec
@@ -44,14 +45,15 @@ BaselineOfPharoOllama >> defineDependencies: spec [
 		with: [ spec repository: 'github://svenvc/NeoJSON/repository' ]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfPharoOllama >> defineGroups: spec [
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfPharoOllama >> definePackages: spec [
 
 	spec package: 'Pharo-Ollama' with: [ spec requires: #( 'NeoJSON' ) ].
+	spec package: 'Pharo-Ollama-Tests' with: [ spec requires: #( 'Pharo-Ollama' ) ].
 
 	spec for: #'pharo10.x' do: [ 
 		spec
