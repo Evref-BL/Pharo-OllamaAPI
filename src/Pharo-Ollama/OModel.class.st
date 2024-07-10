@@ -1,13 +1,14 @@
 Class {
-	#name : #OModel,
-	#superclass : #Object,
+	#name : 'OModel',
+	#superclass : 'Object',
 	#instVars : [
 		'tag'
 	],
-	#category : 'Pharo-Ollama'
+	#category : 'Pharo-Ollama',
+	#package : 'Pharo-Ollama'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OModel >> fullName [
 
 	^ String streamContents: [ :stream |
@@ -17,17 +18,17 @@ OModel >> fullName [
 			stream << t ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OModel >> name [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OModel >> tag [
 	^ tag
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OModel >> tag: anObject [
 
 	tag := anObject

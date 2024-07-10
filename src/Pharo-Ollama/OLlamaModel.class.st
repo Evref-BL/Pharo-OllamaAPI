@@ -1,10 +1,11 @@
 Class {
-	#name : #OLlamaModel,
-	#superclass : #OModel,
-	#category : 'Pharo-Ollama'
+	#name : 'OLlamaModel',
+	#superclass : 'OModel',
+	#category : 'Pharo-Ollama',
+	#package : 'Pharo-Ollama'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OLlamaModel >> name [
 
 	^ 'llama3'

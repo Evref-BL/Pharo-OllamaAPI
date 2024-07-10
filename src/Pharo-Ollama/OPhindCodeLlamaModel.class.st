@@ -1,10 +1,11 @@
 Class {
-	#name : #OPhindCodeLlamaModel,
-	#superclass : #OModel,
-	#category : 'Pharo-Ollama'
+	#name : 'OPhindCodeLlamaModel',
+	#superclass : 'OModel',
+	#category : 'Pharo-Ollama',
+	#package : 'Pharo-Ollama'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OPhindCodeLlamaModel class >> b7 [
 
 	<ollamaInit: 'phind-codellama:34b-v2'>
@@ -13,7 +14,7 @@ OPhindCodeLlamaModel class >> b7 [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OPhindCodeLlamaModel >> name [
 	^ 'phind-codellama'
 ]

@@ -1,6 +1,6 @@
 Class {
-	#name : #OllamaAPI,
-	#superclass : #Object,
+	#name : 'OllamaAPI',
+	#superclass : 'Object',
 	#instVars : [
 		'model',
 		'host',
@@ -15,22 +15,23 @@ Class {
 	#classInstVars : [
 		'defaultModel'
 	],
-	#category : #'Pharo-Ollama'
+	#category : 'Pharo-Ollama',
+	#package : 'Pharo-Ollama'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI class >> defaultModel [
 
 	^ defaultModel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI class >> defaultModel: anObject [
 
 	defaultModel := anObject
 ]
 
-{ #category : #settings }
+{ #category : 'settings' }
 OllamaAPI class >> ollamaSettings: aBuilder [
 
 	<systemsettings>
@@ -49,7 +50,7 @@ OllamaAPI class >> ollamaSettings: aBuilder [
 				ghostHelp: 'Model name' ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 OllamaAPI >> addParameterTo: paramDic [
 
 	| options |
@@ -63,13 +64,13 @@ OllamaAPI >> addParameterTo: paramDic [
 	self top_p ifNotNil: [ :var | options at: #top_p put: var ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 OllamaAPI >> buildQuery: aTextQuery [
 
 	^ aTextQuery
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 OllamaAPI >> delete [
 	"Pull the model linked to this API"
 
@@ -85,37 +86,37 @@ OllamaAPI >> delete [
 	^ znClient delete
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> format [
 
 	^ format
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> format: anObject [
 
 	format := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> formatJson [
 
 	format := 'json'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> host [
 
 	^ host
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> host: anObject [
 
 	host := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 OllamaAPI >> initialize [
 
 	super initialize.
@@ -125,7 +126,7 @@ OllamaAPI >> initialize [
 	stream := false
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 OllamaAPI >> list [
 	"Pull the model linked to this API"
 
@@ -138,43 +139,43 @@ OllamaAPI >> list [
 	^ znClient get
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> model [
 
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> model: anObject [
 
 	model := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> num_predict [
 
 	^ num_predict
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> num_predict: anObject [
 
 	num_predict := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> port [
 
 	^ port
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> port: anObject [
 
 	port := anObject
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 OllamaAPI >> pull [
 	"Pull the model linked to this API"
 
@@ -191,7 +192,7 @@ OllamaAPI >> pull [
 	^ znClient post at: #response
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 OllamaAPI >> query: aTextQuery [
 
 	| znClient paramDic writer |
@@ -226,49 +227,49 @@ OllamaAPI >> query: aTextQuery [
 			^ znClient post at: #response ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> stream [
 
 	^ stream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> stream: anObject [
 
 	stream := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> temperature [
 
 	^ temperature
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> temperature: anObject [
 
 	temperature := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> top_k [
 
 	^ top_k
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> top_k: anObject [
 
 	top_k := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> top_p [
 
 	^ top_p
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OllamaAPI >> top_p: anObject [
 
 	top_p := anObject
