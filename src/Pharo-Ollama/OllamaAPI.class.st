@@ -40,7 +40,7 @@ OllamaAPI class >> ollamaSettings: aBuilder [
 		with: [
 			(aBuilder pickOne: #defaultModel)
 				order: -100000;
-				label: 'HuggingFace Default model';
+				label: 'Ollama Default model';
 				target: self;
 				default: OCodeLlamaModel class >> #b7;
 				domainValues:
@@ -122,7 +122,10 @@ OllamaAPI >> initialize [
 	super initialize.
 	host := '127.0.0.1'.
 	port := 11434.
-	model := self class defaultModel.
+	model := self class defaultModel
+		         valueWithReceiver:
+		         self class defaultModel methodClass instanceSide
+		         arguments: {  }.
 	stream := false
 ]
 

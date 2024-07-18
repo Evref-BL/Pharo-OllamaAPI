@@ -42,6 +42,15 @@ OCodeLlamaModel class >> code7b [
 ]
 
 { #category : 'accessing' }
+OCodeLlamaModel class >> codeLlama7binstructq3KS [
+
+	<ollamaInit: 'codellama:7b-instruct-q3_K_S'>
+	^ self new
+		  tag: '7b-instruct-q3_K_S';
+		  yourself
+]
+
+{ #category : 'accessing' }
 OCodeLlamaModel class >> instruct7b [
 
 	<ollamaInit: 'codellama:7b-instruct'>
