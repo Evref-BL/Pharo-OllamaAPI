@@ -22,7 +22,7 @@ Class {
 { #category : 'accessing' }
 OllamaAPI class >> defaultModel [
 
-	^ defaultModel
+	^ defaultModel ifNil: [ defaultModel := OCodeLlamaModel class >> #b7 ]
 ]
 
 { #category : 'accessing' }
