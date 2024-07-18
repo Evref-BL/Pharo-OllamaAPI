@@ -1,5 +1,8 @@
 # Pharo-OllamaAPI
 
+[![Pharo 12](https://img.shields.io/badge/Pharo-12-%23aac9ff.svg)](https://github.com/pharo-project/pharo)
+[![Moose version](https://img.shields.io/badge/Moose-12-%23aac9ff.svg)](https://github.com/moosetechnology/Moose)
+
 This is a simple API to call the [Ollama API](https://github.com/jmorganca/ollama/blob/main/docs/api.md)
 
 > You must first install [Ollama](https://ollama.ai/) on your computer
