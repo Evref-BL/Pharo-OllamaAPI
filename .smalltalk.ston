@@ -1,7 +1,7 @@
 SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
-      #baseline : 'Pharo-Ollama',
+      #baseline : 'PharoOllama',
       #directory : 'src',
       #ignoreImage : true,
       #onConflict : #useIncoming,
