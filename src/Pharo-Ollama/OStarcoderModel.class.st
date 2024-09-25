@@ -1,11 +1,10 @@
 Class {
-	#name : 'OStarcoderModel',
-	#superclass : 'OModel',
-	#category : 'Pharo-Ollama',
-	#package : 'Pharo-Ollama'
+	#name : #OStarcoderModel,
+	#superclass : #OModel,
+	#category : 'Pharo-Ollama'
 }
 
-{ #category : 'accessing' }
+{ #category : #accessing }
 OStarcoderModel >> name [
 
 	^ 'starcoder'
