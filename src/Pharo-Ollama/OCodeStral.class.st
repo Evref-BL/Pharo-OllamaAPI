@@ -1,10 +1,11 @@
 Class {
-	#name : #OCodeStral,
-	#superclass : #OModel,
-	#category : #'Pharo-Ollama'
+	#name : 'OCodeStral',
+	#superclass : 'OModel',
+	#category : 'Pharo-Ollama',
+	#package : 'Pharo-Ollama'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 OCodeStral class >> codestral22b [
 
 	<ollamaInit: 'codestral:22b'>
@@ -13,7 +14,7 @@ OCodeStral class >> codestral22b [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OCodeStral >> name [
 
 	^ 'codestral'

@@ -1,10 +1,11 @@
 Class {
-	#name : #OCodeLlamaModel,
-	#superclass : #OModel,
-	#category : #'Pharo-Ollama'
+	#name : 'OCodeLlamaModel',
+	#superclass : 'OModel',
+	#category : 'Pharo-Ollama',
+	#package : 'Pharo-Ollama'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OCodeLlamaModel class >> b13 [
 
 	<ollamaInit: 'codellama:13b'>
@@ -13,7 +14,7 @@ OCodeLlamaModel class >> b13 [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OCodeLlamaModel class >> b7 [
 
 	<ollamaInit: 'codellama:7b'>
@@ -22,7 +23,7 @@ OCodeLlamaModel class >> b7 [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OCodeLlamaModel class >> code [
 
 	<ollamaInit: 'codellama:code'>
@@ -31,7 +32,7 @@ OCodeLlamaModel class >> code [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OCodeLlamaModel class >> code7b [
 
 	<ollamaInit: 'codellama:7b-code'>
@@ -40,7 +41,7 @@ OCodeLlamaModel class >> code7b [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OCodeLlamaModel class >> codeLlama7binstructq3KS [
 
 	<ollamaInit: 'codellama:7b-instruct-q3_K_S'>
@@ -49,7 +50,7 @@ OCodeLlamaModel class >> codeLlama7binstructq3KS [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OCodeLlamaModel class >> instruct7b [
 
 	<ollamaInit: 'codellama:7b-instruct'>
@@ -58,8 +59,8 @@ OCodeLlamaModel class >> instruct7b [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OCodeLlamaModel >> name [
 
-	^ 'ollama'
+	^ 'codellama'
 ]

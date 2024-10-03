@@ -1,10 +1,11 @@
 Class {
-	#name : #OPhi3Model,
-	#superclass : #OModel,
-	#category : 'Pharo-Ollama'
+	#name : 'OPhi3Model',
+	#superclass : 'OModel',
+	#category : 'Pharo-Ollama',
+	#package : 'Pharo-Ollama'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OPhi3Model class >> medium [
 
 	<ollamaInit: 'phi3:medium'>
@@ -13,7 +14,7 @@ OPhi3Model class >> medium [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OPhi3Model class >> mini [
 
 	<ollamaInit: 'phi3:mini'>
@@ -22,7 +23,7 @@ OPhi3Model class >> mini [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 OPhi3Model >> name [
 
 	^ 'phi3'
