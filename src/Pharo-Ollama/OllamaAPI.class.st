@@ -10,7 +10,8 @@ Class {
 		'num_predict',
 		'top_k',
 		'top_p',
-		'format'
+		'format',
+		'num_ctx'
 	],
 	#classInstVars : [
 		'defaultModel'
@@ -155,6 +156,18 @@ OllamaAPI >> model: anObject [
 ]
 
 { #category : 'accessing' }
+OllamaAPI >> num_ctx [
+
+	^ num_ctx
+]
+
+{ #category : 'accessing' }
+OllamaAPI >> num_ctx: anObject [
+
+	num_ctx := 	anObject
+]
+
+{ #category : 'accessing' }
 OllamaAPI >> num_predict [
 
 	^ num_predict
@@ -179,6 +192,27 @@ OllamaAPI >> port: anObject [
 ]
 
 { #category : 'api' }
+OllamaAPI >> prequery: aTextQuery [
+
+    | paramDic optionsDic |
+    paramDic := Dictionary new.
+    paramDic at: #model put: self model fullName.
+    paramDic at: #prompt put: (self buildQuery: aTextQuery).
+    paramDic at: #stream put: self stream.
+    self format ifNotNil: [ :f | paramDic at: #format put: f ].
+    self addParameterTo: paramDic.
+
+    self num_ctx ifNotNil: [
+        optionsDic := Dictionary new.
+        optionsDic at: #num_ctx put: self num_ctx.
+        paramDic at: #options put: optionsDic.
+    ].
+
+    ^ paramDic
+
+]
+
+{ #category : 'api' }
 OllamaAPI >> pull [
 	"Pull the model linked to this API"
 
@@ -198,36 +232,30 @@ OllamaAPI >> pull [
 { #category : 'api' }
 OllamaAPI >> query: aTextQuery [
 
-	| znClient paramDic writer |
+	| znClient  writer  |
 	znClient := ZnClient new.
 	writer := ZnUtils defaultJSONWriter.
 	znClient
-		accept: ZnMimeType applicationJson;
-		contentWriter: [ :data | ZnEntity json: (writer toString: data) ].
+    	accept: ZnMimeType applicationJson;
+    	contentWriter: [ :data | ZnEntity json: (writer toString: data) ].
 	znClient host: self host.
 	znClient port: self port.
 	znClient path: 'api/generate'.
-	paramDic := Dictionary new.
-	paramDic at: #model put: self model fullName.
-	paramDic at: #prompt put: (self buildQuery: aTextQuery).
-	paramDic at: #stream put: self stream.
-	self format ifNotNil: [ :f | paramDic at: #format put: f ].
 
 
-	self addParameterTo: paramDic.
-	znClient contents: paramDic.
+	znClient contents: (self prequery: aTextQuery).
 
-	self stream
-		ifTrue: [
-			znClient streaming: true.
-			^ znClient post ]
-		ifFalse: [
-			| reader | 
-			znClient forJsonREST.
-			reader := ZnUtils defaultJSONReader.
-			znClient contentReader: [ :entity |
-				reader fromString: entity contents ].
-			^ znClient post at: #response ]
+	self stream 
+    	ifTrue: [
+        	znClient streaming: true.
+        	^ znClient post ]
+    	ifFalse: [
+        | reader |
+        znClient forJsonREST.
+        reader := ZnUtils defaultJSONReader.
+        znClient contentReader: [ :entity | 
+            reader fromString: entity contents ].
+        ^ znClient post at: #response ].
 ]
 
 { #category : 'accessing' }

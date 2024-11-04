@@ -17,6 +17,18 @@ OllamaAPITest >> setUp [
 	ollama := OllamaAPI new.
 ]
 
+{ #category : 'tests' }
+OllamaAPITest >> testNumTokenVariables [
+	
+	| ollamatest |
+	ollamatest := OllamaAPI new.
+	self assert: (ollamatest num_ctx isNil).
+	self assert: (((ollamatest prequery: 'test') at: #options) isEmptyOrNil).
+	ollamatest num_ctx: 50.
+	self assert: (ollamatest num_ctx == 50).
+	self assert: (((ollamatest prequery: 'test') at: #options) isNotEmpty).
+]
+
 { #category : 'running' }
 OllamaAPITest >> testOllamaAPIHasDefaultModelInitialized [
 
